@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Image(models.Model):
+class ImageRequest(models.Model):
+    user = models.ForeignKey(User, related_name="image_requests")
     location = models.CharField(max_length=200)
     description = models.TextField()
     expiration = models.DateTimeField(blank=True,null=True)
