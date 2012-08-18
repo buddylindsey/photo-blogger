@@ -7,7 +7,7 @@ python:
 - "2.7"
 
 env:
-- DJANGO=1.4 DB=postgres TRAVIS=true
+- DJANGO=1.4 DB=postgres TRAVIS=true FACEBOOK_APP_ID=string FACEBOOK_API_SECRET=string
 
 install:
 - "pip install -q DJANGO==$DJANGO --use-mirrors"
