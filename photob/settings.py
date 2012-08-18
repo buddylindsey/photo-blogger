@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'social_auth',
     'accounts',
+    'image',
 )
 
 # django-social-auth settings
