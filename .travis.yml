@@ -8,7 +8,6 @@ env:
 
 install:
 - "pip install -q DJANGO==$DJANGO --use-mirrors"
-- "pip install -q . --use-mirrors"
 - "pip install -q -r requirements.txt --use-mirrors"
 
 script: python manage.py test
