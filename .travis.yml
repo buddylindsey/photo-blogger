@@ -1,10 +1,13 @@
+before_script:
+- psql -c 'create database photob;' -U postgres
+
 language: python
 
 python:
 - "2.7"
 
 env:
-- DJANGO=1.4 DB=postgres
+- DJANGO=1.4 DB=postgres TRAVIS=true
 
 install:
 - "pip install -q DJANGO==$DJANGO --use-mirrors"

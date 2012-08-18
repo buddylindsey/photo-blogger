@@ -1,4 +1,5 @@
 # Django settings for photob project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,8 +10,21 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+
 from postgresify import postgresify
 DATABASES = postgresify()
+
+if(os.environ['TRAVIS'] == 'true' ):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "photob",
+            "USER": "postgres",
+            "PASSWORD": "",
+            "HOST": "localhost",
+            "PORT": "",
+            }
+        }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
