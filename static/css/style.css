@@ -1,0 +1,54 @@
+#headerslideshow {
+  height:500px;
+  width:100%;
+  
+}
+#background {
+    background-image:url('/static/img/header.png');
+    background-size: cover;
+    width:100%;
+    height:489px;
+}
+body {
+  background-color: #515151 !important;
+  padding-top:0px !important;
+  background-image:url('/static/img/wallpaper.jpg') !important;
+}
+#logo {
+    padding-left:20px;
+    padding-top:20px;
+}
+.container {
+    background-color:white;
+    font-family: 'Lato', sans-serif;
+    padding-left:0px;
+    padding-right:0px;
+      -moz-box-shadow:    0px 0px 2px 2px #bfbfbf;
+  -webkit-box-shadow: 0px 0px 2px 2px #bfbfbf;
+  box-shadow:         0px 0px 2px 2px #bfbfbf;
+}
+footer {
+    text-align:center;
+}
+
+h2.step {
+	float: left;
+	font-size: 47px;
+	margin-top: 30px;
+}
+p.step {
+	font-size: 14px;
+	margin-top: 27px;
+	margin-left: 34px;
+	display: block;
+	width: 320px;
+}
+#steps {
+	height: 510px;
+	width: 100%;
+	background: url('/static/img/camerawallpaper.png') no-repeat center -76px;
+}
+.divider {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
