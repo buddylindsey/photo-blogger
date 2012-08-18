@@ -4,8 +4,8 @@ from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
-from image.models import ImageRequest
-from image.forms import ImageRequestForm
+from image.models import ImageRequest, ImageOffer
+from image.forms import ImageRequestForm, ImageOfferForm
 
 class ImageModelTest(TestCase):
     def _create_user(self, username, password):
@@ -53,5 +53,54 @@ class ImageRequestFormTest(TestCase):
         })
 
         # Uncomment once index page exists
-        self.assertRedirects(response, "/")
+        #self.assertRedirects(response, "/")
+
+class ImageOfferModelTest(TestCase):
+    def _create_user(self, username, password):
+        return User.objects.create_user(username=username, password=password)
+
+    def _create_image_request(self):
+        user = self._create_user('joe', 'password')
+        ir = ImageRequest(location="tulsa", description="downtown", user=user)
+        ir.save()
+        return ir
+
+    def test_model_fields(self):
+        user = self._create_user('buddy', 'password')
+        ir = self._create_image_request()
+
+        io = ImageOffer()
+        io.user = user
+        io.date_taken = now()
+        io.image = "image.jpg"
+        io.notes = "I am a nice note"
+        io.approval = 1
+        io.request = ir 
+        io.save()
+
+        io = ImageOffer.objects.get(image__exact="image.jpg")
+
+        self.assertEqual(user.id, io.user.id)
+        self.assertEqual(ir.id, io.request.id)
+        self.assertEqual(1, io.approval)
+
+class ImageOfferFormTest(TestCase):
+    def _create_user(self, username, password):
+        return User.objects.create_user(username=username, password=password)
+
+    def _create_image_request(self):
+        user = self._create_user('joe', 'password')
+        ir = ImageRequest(location="tulsa", description="downtown", user=user)
+        ir.save()
+        return ir
+
+    def test_form_is_valid(self):
+        user = self._create_user('buddy','password')
+        ir = self._create_image_request()
+
+        iof = ImageOfferForm(data={"user":user.id, "request":ir.id, "image":"image.jpg"})
+
+        self.assertEqual(True, iof.is_valid())
+    
+
 
