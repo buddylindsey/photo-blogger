@@ -1,6 +1,9 @@
 # Django settings for photob project.
 import os
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+path = lambda *a: os.path.join(ROOT, *a)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -124,10 +127,29 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'social_auth',
+    'accounts',
 )
+
+# django-social-auth settings
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_ENABLED_BACKENDS = ('github',)
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+
+FACEBOOK_APP_ID = os.environ['FACEBOOK_APP_ID']
+FACEBOOK_API_SECRET = os.environ['FACEBOOK_APP_SECRET']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/accounts/'
+LOGIN_ERROR_URL = '/accounts/login-error/'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

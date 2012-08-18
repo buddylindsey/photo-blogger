@@ -2,3 +2,5 @@ Django
 psycopg2
 dj-database-url
 django-heroku-postgresify
+South
+django-social-auth
