@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'social_auth',
     'accounts',
     'image',
+    'home',
 )
 
 # django-social-auth settings
