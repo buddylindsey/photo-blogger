@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 
-from image.models import Image
+from image.models import ImageRequest
 
-class ImageForm(ModelForm):
+class ImageRequestForm(ModelForm):
     class Meta:
-        model = Image
+        model = ImageRequest
