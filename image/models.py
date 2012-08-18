@@ -13,7 +13,7 @@ class ImageRequest(models.Model):
 class ImageOffer(models.Model):
     user = models.ForeignKey(User, related_name="image_offers")
     request = models.ForeignKey(ImageRequest, related_name="offers")
-    image = models.CharField(max_length=250)
+    image = models.ImageField(upload_to="/")
     notes = models.TextField(blank=True,null=True)
     approval = models.IntegerField(default=0,blank=True)
     date_taken = models.DateTimeField(default=now(),blank=True)

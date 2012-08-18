@@ -5,3 +5,4 @@ django-heroku-postgresify
 South
 django-social-auth
 -e git+https://github.com/buddylindsey/buddy.git#egg=buddy
+pil
