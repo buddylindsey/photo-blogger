@@ -13,17 +13,20 @@ MANAGERS = ADMINS
 from postgresify import postgresify
 DATABASES = postgresify()
 
-if(os.environ['TRAVIS'] == 'true' ):
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "photob",
-            "USER": "postgres",
-            "PASSWORD": "",
-            "HOST": "localhost",
-            "PORT": "",
+try:
+    if(os.environ['TRAVIS'] == 'true' ):
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql_psycopg2",
+                "NAME": "photob",
+                "USER": "postgres",
+                "PASSWORD": "",
+                "HOST": "localhost",
+                "PORT": "",
+                }
             }
-        }
+except:
+    pass
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
