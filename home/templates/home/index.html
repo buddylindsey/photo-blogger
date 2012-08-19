@@ -44,6 +44,13 @@
           </center>
         </div>
       </div>
-
+      <div id="modal_background"></div>
+      <div id="request_form">
+        <form action="{% url requestimage %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Make Request" />
+        </form>
+      </div>
 
 {% endblock %}
