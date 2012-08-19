@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+      <div class="quotation1">
+        <h2>Great for Bloggers</h2>
+        <p>We have all been there, you have a deadline quickly approaching and you need a picture of Madison Square Garden.</p>
+      </div>
+      <div class="quotation2">
+        <h2>Convenient for Photographers</h2>
+        <p>Or maybe you happen to be near Madison Square Garden and you have your camera in your bag, why not grab a shot.</p>
+      </div>
       <img class="divider" src="/static/img/divider.png" />
       <div id="steps">
       <!-- Example row of columns -->
@@ -21,13 +29,21 @@
       <div class="row">
         <div class="span4 offset2">
           <h2 class="step">3</h2>
-           <p class="step">The photographer submits the photo to Crowdphoto.org for Bill's approval.</p>
+           <p class="step">The photographer submits the photo to CrowdPhoto.org for Bill's approval.</p>
         </div>
         <div class="span4">
           <h2 class="step">4</h2>
            <p class="step">Bill is alerted that his photo is available.  He approves the photo and high-fives the photographer.</p>
        </div>
      </div>
+     <div class="row">
+        <div class="span6 offset3">
+          <center>
+          <img src="{{STATIC_URL}}img/viewlistbutton.png" class="inputbutton" />
+          <img src="{{STATIC_URL}}img/requestphotobutton.png" class="inputbutton" />
+          </center>
+        </div>
+      </div>
 
 
 {% endblock %}
