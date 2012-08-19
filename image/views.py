@@ -1,9 +1,10 @@
 from django.template import RequestContext
+from django.views.generic import DeleteView
 from django.core.urlresolvers import reverse
+from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.shortcuts import redirect, render_to_response
-from django.views.generic import DeleteView
-from django.core.files.base import ContentFile
+from django.contrib.auth.decorators import login_required
 
 from buddy.utils import datetime_string
 
@@ -14,6 +15,7 @@ class DeleteImageView(DeleteView):
     model = ImageRequest
     success_url = "/"  
 
+@login_required
 def request_image(request):
     form = ImageRequestForm(request.POST or None)
 
@@ -28,6 +30,7 @@ def request_image(request):
             {'form':form},
             context_instance=RequestContext(request))
 
+@login_required
 def offer_image(request):
     if request.method == "POST":
         form = ImageOfferForm(request.POST, request.FILES)
