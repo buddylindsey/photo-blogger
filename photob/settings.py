@@ -158,7 +158,7 @@ FACEBOOK_API_SECRET = os.environ['FACEBOOK_APP_SECRET']
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/accounts/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL = '/accounts/login-error/'
 
 # A sample logging configuration. The only tangible logging

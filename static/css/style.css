@@ -6,6 +6,12 @@
   width:100%;
   
 }
+
+#header_light {
+	height: 120px;
+	width: 100%;
+	background-color: #323332;
+}
 #background {
     background-image:url('/static/img/header.png');
     background-size: cover;
@@ -75,31 +81,65 @@ p.step {
 	line-height: 2em;
 }
 
-.facebooklogin {
-	margin-top: 30px;
-	margin-left: 100px;
+#headerslideshow .facebooklogin {
+	margin-top: 70px;
+	margin-left: 34px;
 }
 
-.facebooklogin div {
+#headerslideshow .facebooklogin div {
 	text-align: center;
 	float: left;
 }
 
-.facebooklogin .request_image {
-	width: 203px;
+#headerslideshow .facebooklogin .request_image {
+	width: 153px;
+	margin-right: 8px;
 }
 
-.facebooklogin img.login_image {
+#headerslideshow .facebooklogin img.login_image {
 	margin-top: 90px;
 	display: block;
+	margin-left: 70px;
+	box-shadow: 0 0 20px #78aefb;
 }
 
-.facebooklogin p a {
+#headerslideshow .facebooklogin p a {
 	margin-top: 9px;
 	display: block;
 	color: #d7562d;
 	font-size: 16px;
 	text-align: center;
+}
+
+#header_light .facebooklogin {
+	float: right;
+	width: 430px;
+	text-align: right;
+	margin-top: 31px;
+	margin-right: 20px;
+}
+
+#header_light .facebooklogin .request_image {
+	width: 143px;
+	display: inline-block;
+}
+
+#header_light .facebooklogin img.login_image {
+	margin-top: 20px;
+	display: block;
+	float: right;
+	margin-right: 9px;
+	box-shadow: 0 0 20px #78aefb;
+}
+
+#header_light .facebooklogin p a {
+	color: #d7562d;
+	font-size: 16px;
+	display: inline-block;
+	margin-top: 18px;
+	margin-right: 10px;
+	float: right;
+	margin-left: 20px;
 }
 
 .quotation2 {
@@ -172,14 +212,8 @@ div#request_form {
 	display: none;
 }
 
-#mask{  
-    position:absolute; /* important */  
-     /* start from left */  
-    height:100%; /* cover the whole page */  
-    width:100%;  /* cover the whole page */  
-    display:none; /* don't show it '*/  
-  
-    /* styling bellow */  
-    background-color: black;  
-} 
+.show_request {
+	cursor: pointer;
+	cursor: hand;
+}
 
