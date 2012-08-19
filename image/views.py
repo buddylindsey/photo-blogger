@@ -1,9 +1,15 @@
+from django.template import RequestContext
+from django.core.files.storage import default_storage
+from django.shortcuts import redirect, render_to_response
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.core.files.base import ContentFile
+
+from buddy.utils import datetime_string
 
 from image.models import ImageRequest
-from image.forms import ImageRequestForm
+from image.forms import ImageRequestForm, ImageOfferForm
 
-class AddImageView(CreateView):
+class RequestImageView(CreateView):
     model = ImageRequest         
     form_class = ImageRequestForm
     success_url = "/"       
@@ -16,3 +22,28 @@ class UpdateImageView(UpdateView):
 class DeleteImageView(DeleteView):
     model = ImageRequest
     success_url = "/"  
+
+
+def offer_image(request):
+    if request.method == "POST":
+        form = ImageOfferForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            file = form.cleaned_data['image']
+
+            instance = form.instance
+            instance.image.save("%s-%s" % (file.name, datetime_string()), ContentFile(file.read()))
+            io = instance.save()
+
+            return redirect(reverse('index'))
+        else:
+            return render_to_response('image/imageoffer_form.html',
+                {'form':form},
+                context_instance=RequestContext(request))
+
+    else:
+        form = ImageOfferForm()
+        return render_to_response('image/imageoffer_form.html',
+            {'form':form},
+            context_instance=RequestContext(request))
+
