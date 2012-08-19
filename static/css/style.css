@@ -231,4 +231,57 @@ div#offer_form {
 	cursor: pointer;
 	cursor: hand;
 }
+/*Request Form Gui*/
+input {
+	font-weight: 300;
+}
 
+input#id_location {
+	width: 93%;
+	padding: 10px;
+}
+
+textarea#id_description {
+	width: 93%;
+	padding: 10px;
+}
+
+input#id_expiration {
+	width: 100%;
+	display: none;
+}
+img.ui-datepicker-trigger {
+	width: 22px;
+	margin-top: -7px;
+}
+p#id_expiration_label {
+	float: left;
+	margin-right: 10px;
+}
+
+input::-webkit-input-placeholder {
+    color: #cfcfcf;
+}
+input:-moz-placeholder {
+    color:    #cfcfcf;
+}
+input:-ms-input-placeholder {
+    color:    #cfcfcf;
+}
+
+#map_canvas {
+	height: 200px;
+	width: 100%;
+	display: none;
+}
+#map_toggle {
+	text-align: right;
+	padding-right: 10px;
+	font-weight: bold;
+	font-size: 13px;
+	letter-spacing: 0;
+	color: #858584;
+	margin-top: -12px;
+	cursor: pointer;
+	cursor: hand;
+}

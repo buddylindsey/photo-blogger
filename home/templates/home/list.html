@@ -37,15 +37,15 @@
     <form action="{% url requestimage %}" method="post">
         {% csrf_token %}
         {{ requestform.as_p }}
-        <input type="submit" value="Make Request" />
+        <input type="submit" value="Make Request" id="submit_request_button" />
     </form>
 </div>
 <div id="offer_form">
     <form action="{% url offerimage %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ offerform.as_p }}
-        <input type="hidden" name="request" />
-        <input type="submit" value="Submit Photo" />
+        <input type="hidden" name="request" id="request" />
+        <input type="submit" value="Submit Photo" id="submit_offer_button" />
     </form> 
 </div>
 

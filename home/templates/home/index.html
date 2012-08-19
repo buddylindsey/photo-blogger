@@ -46,11 +46,14 @@
       </div>
       <div id="modal_background"></div>
       <div id="request_form">
-        <div id="map_canvas" style="width:200px;height:200px;"></div>
-        <form action="{% url requestimage %}" method="post">
+        <div id="request_map">
+            <div id="map_toggle">pin to a map</div>
+            <div id="map_canvas"></div>
+        </div>
+        <form action="{% url requestimage %}" method="post" id="submit_request">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Make Request" />
+        <input type="button" value="Make Request" id="submit_request_button" />
         </form>
       </div>
 {% endblock %}

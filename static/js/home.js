@@ -1,32 +1,65 @@
 jQuery.fn.center = function () {
   this.css("position","absolute");
-  this.css("top", Math.max(0, (($(window).height() - this.outerHeight()) / 2) + 
-        $(window).scrollTop()) + "px");
-  this.css("left", Math.max(0, (($(window).width() - this.outerWidth()) / 2) + 
-        $(window).scrollLeft()) + "px");
+  this.css("top", ( $(window).height() - this.height() ) / 2+$(window).scrollTop() + "px");
+  this.css("left", ( $(window).width() - this.width() ) / 2+$(window).scrollLeft() + "px");
   return this;
 }
+
+var default_lat = 36.14342011686289;
+var default_lng = -96.00540148632808;
 
 $(document).ready(function() {
   $('.show_request').click(function(){
     $('#request_form').center();
     $('#modal_background').fadeToggle();
-    $('#request_form').fadeToggle();   
-    initializeMap(36.14342011686289,-96.00540148632808);
+    $('#request_form').show();
+    $('#id_expiration').datepicker({showOn: "button",
+      buttonImage: "/static/img/calendar.png",
+      buttonImageOnly: true,
+      onSelect: function(dateText, inst) {
+        $('#id_expiration_label').html(dateText);
+      }
+    });
+    $('#id_expiration').after("<p id='id_expiration_label'>(Optional) Select an Expiration Date</p>");
+    $('#id_location').after($('#request_map'));
   });
   $('.make_offer').click(function(){
     $('#offer_form').center();
     $('#modal_background').fadeToggle();
     $('#offer_form').fadeToggle();   
-    $('#id_request').val($(this).data('request-id'));
+    $('#request').val($(this).data('request-id'));
   });
   $('#modal_background').click(function(){
     $(this).fadeToggle();
     $('#request_form:visible').toggle();
     $('#offer_form:visible').toggle();
   });
+  $('#id_expiration').click(function(){
+    $('.id_expiration_trigger').click();
+  });
+  $('#submit_request_button').click(function(){
 
-    
+    if($('#id_description').val().length == 0)
+    {
+      alert('please enter a description');
+      $('#id_description').focus();
+    }
+    else
+    {
+      if($('#id_location').val().length == 0)
+      {
+        $('#id_location').val("Not location specific");  
+      }
+      $('#submit_request').submit();
+    }
+  });
+  $('#map_toggle').click(function(){
+    $('#map_canvas').toggle();
+    initializeMap(default_lat,default_lng);
+    $('#map_toggle').remove();
+    $('#id_latitude').val(default_lat);
+    $('#id_longitude').val(default_lng);
+  });
 });
 
 
@@ -49,8 +82,8 @@ function initializeMap(lat,lng) {
       marker,
       'drag',
       function() {
-        $('#id_latitude').val(marker.position.lat().toFixed(7));
-        $('#id_longitude').val(marker.position.lng().toFixed(7));
+        $('#id_latitude').val(marker.position.lat());
+        $('#id_longitude').val(marker.position.lng());
       }
-      );
+  );
 }
