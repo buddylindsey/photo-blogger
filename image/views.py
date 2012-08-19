@@ -1,8 +1,10 @@
 from django.template import RequestContext
+from django.core.files.storage import default_storage
 from django.shortcuts import redirect, render_to_response
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.core.files.base import ContentFile
 
-from buddy.amazon import upload_to_s3
+from buddy.utils import datetime_string
 
 from image.models import ImageRequest
 from image.forms import ImageRequestForm, ImageOfferForm
@@ -27,12 +29,11 @@ def offer_image(request):
         form = ImageOfferForm(request.POST, request.FILES)
 
         if form.is_valid():
-            file = request.FILES['image']
+            file = form.cleaned_data['image']
 
-            filename = upload_to_s3(file, 'dash-media')
-
-            form.image = filename
-            io = form.save()
+            instance = form.instance
+            instance.image.save("%s-%s" % (file.name, datetime_string()), ContentFile(file.read()))
+            io = instance.save()
 
             return redirect(reverse('index'))
         else:
