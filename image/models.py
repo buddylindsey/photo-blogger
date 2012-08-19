@@ -10,6 +10,9 @@ class ImageRequest(models.Model):
     latitude = models.DecimalField(max_digits=13, decimal_places=7,blank=True,null=True)
     longitude = models.DecimalField(max_digits=13, decimal_places=7,blank=True,null=True)
 
+    def __unicode__(self):
+        return self.location
+
 class ImageOffer(models.Model):
     user = models.ForeignKey(User, related_name="image_offers")
     request = models.ForeignKey(ImageRequest, related_name="offers")
