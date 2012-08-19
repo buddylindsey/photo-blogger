@@ -23,9 +23,14 @@
           {% for offer in request.offers.all %}
           <a href="{{ MEDIA_URL }}{{ offer.image }}" class="preview"><img src="{{ MEDIA_URL }}{{ offer.image }}" alt="gallery thumbnail" class="offerthumbnail" /></a>
           {% empty %}
-          You have no active requests.
           {% endfor %}
         </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="row">
+      <div class="span4 offset1">
+        <p>You do not have any active requests</p>
       </div>
     </div>
 
