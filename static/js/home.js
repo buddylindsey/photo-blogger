@@ -103,7 +103,6 @@ $(document).ready(function() {
     $(this).remove();
   }
   });
-  imagePreview();
 });
 
 
