@@ -31,11 +31,12 @@ def request_image(request):
 def offer_image(request):
     if request.method == "POST":
         form = ImageOfferForm(request.POST, request.FILES)
-
+        
         if form.is_valid():
             file = form.cleaned_data['image']
 
             instance = form.instance
+            instance.request = ImageRequest.objects.get(pk=request.POST['request'])
             instance.user = request.user
             instance.image.save("%s-%s" % (datetime_string(), file.name), ContentFile(file.read()))
             io = instance.save()

@@ -13,6 +13,7 @@ class ImageRequestForm(forms.ModelForm):
         model = ImageRequest
 
 class ImageOfferForm(forms.ModelForm):
+
     class Meta:
-        exclude = ('user',)
+        exclude = ('request', 'user', 'approval', 'date_taken')
         model = ImageOffer

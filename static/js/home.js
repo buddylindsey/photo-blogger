@@ -18,6 +18,7 @@ $(document).ready(function() {
     $('#offer_form').center();
     $('#modal_background').fadeToggle();
     $('#offer_form').fadeToggle();   
+    $('#id_request').val($(this).data('request-id'));
   });
   $('#modal_background').click(function(){
     $(this).fadeToggle();

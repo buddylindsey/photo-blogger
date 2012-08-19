@@ -18,7 +18,7 @@
         <p class="req_expiration">{{ request.expiration }}</p>
         <p class="req_latitude">{{ request.latitude }}</p>
         <p class="req_longitude">{{ request.longitude }}</p>
-        <a class="make_offer">Make Offer</a>
+        <a class="make_offer" data-request-id="{{ request.id }}">Make Offer</a>
     </div>
 </div>
 {% empty %}
@@ -44,6 +44,7 @@
     <form action="{% url offerimage %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ offerform.as_p }}
+        <inpyt type="hidden" name="request" />
         <input type="submit" value="Submit Photo" />
     </form> 
 </div>
