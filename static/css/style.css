@@ -75,10 +75,30 @@ p.step {
 	line-height: 2em;
 }
 
-#facebooklogin {
+.facebooklogin.login {
 	display: block;
 	margin-top: 90px;
 	margin-left: 110px;
+}
+
+.facebooklogin.request {
+	display: block;
+	margin-top: 90px;
+	margin-left: 110px;
+}
+
+img.facebooklogin.request {
+	width: 145px;
+}
+
+p.facebooklogin {
+	margin-left: 155px;
+	margin-top: 9px;
+}
+
+p.facebooklogin a {
+	color: #d7562d;
+	font-size: 16px;
 }
 
 .quotation2 {

@@ -39,7 +39,12 @@
     <div id="headerslideshow">
          <div id="background">
             <img src="{{STATIC_URL}}img/logo.png" id="logo" />
-            <img src="{{STATIC_URL}}img/facebooklogin.png" id="facebooklogin" />
+            {% if user.is_authenticated %}
+            <img src="{{STATIC_URL}}img/requestphotobutton.png" class="facebooklogin request" />
+            <p class="facebooklogin"><a href="/accounts/logout">Logout</a></p>
+            {% else %}
+            <a href="/accounts/login/"><img src="{{STATIC_URL}}img/facebooklogin.png" class="facebooklogin login" /></a>
+            {% endif %}
          </div>
      </div>    
     {% block content %}
