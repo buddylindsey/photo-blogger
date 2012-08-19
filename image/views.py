@@ -36,6 +36,7 @@ def offer_image(request):
             file = form.cleaned_data['image']
 
             instance = form.instance
+            instance.user = request.user
             instance.image.save("%s-%s" % (datetime_string(), file.name), ContentFile(file.read()))
             io = instance.save()
 
