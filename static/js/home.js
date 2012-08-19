@@ -1,9 +1,20 @@
+jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - this.outerHeight()) / 2) + 
+                                                $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - this.outerWidth()) / 2) + 
+                                                $(window).scrollLeft()) + "px");
+    return this;
+}
+
 $(document).ready(function() {
-   $('#request_form').hide(); 
-   //$('#create_modal').hide(); //Hide our modal
    $('.show_request').click(function(){
-    //$('#create_modal').show();
-    //$('#create_modal').css('display','block');
-    $('#request_form').show();   
+    $('#request_form').center();
+    $('#modal_background').fadeToggle();
+    $('#request_form').fadeToggle();   
+       });
+   $('#modal_background').click(function(){
+    $(this).fadeToggle();
+    $('#request_form').toggle();
    });
 });
