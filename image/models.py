@@ -10,6 +10,21 @@ class ImageRequest(models.Model):
     latitude = models.DecimalField(max_digits=20, decimal_places=17,blank=True,null=True)
     longitude = models.DecimalField(max_digits=20, decimal_places=17,blank=True,null=True)
 
+        
+    def non_approved_offers(self):
+        offers = self.offers.filter(approval=0)
+        return offers
+
+    def approved_offers(self):
+        offers = self.offers.filter(approval=1)
+        return offers
+
+    def _has_approved_image(self):
+        if(self.offers.filter(approval=1).count() > 0):
+            return True
+        else:
+            return False
+
     def __unicode__(self):
         return self.location
 
