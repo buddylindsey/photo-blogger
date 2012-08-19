@@ -1,4 +1,5 @@
 from django.template import RequestContext
+from django.core.urlresolvers import reverse
 from django.core.files.storage import default_storage
 from django.shortcuts import redirect, render_to_response
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -32,7 +33,7 @@ def offer_image(request):
             file = form.cleaned_data['image']
 
             instance = form.instance
-            instance.image.save("%s-%s" % (file.name, datetime_string()), ContentFile(file.read()))
+            instance.image.save("%s-%s" % (datetime_string(), file.name), ContentFile(file.read()))
             io = instance.save()
 
             return redirect(reverse('index'))
