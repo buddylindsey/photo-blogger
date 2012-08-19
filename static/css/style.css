@@ -200,6 +200,21 @@ div#request_form {
 	-webkit-box-shadow: 0px 0px 10px 10px black;
 	box-shadow:         0px 0px 10px 10px black;
 }
+div#offer_form {
+	width: 370px;
+	background-color: #e6e4e4;
+	position: fixed;
+	left: 70px;
+	top: 0;
+	padding: 20px;
+	z-index: 9999;
+	display: none;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow:    0px 0px 10px 10px black;
+	-webkit-box-shadow: 0px 0px 10px 10px black;
+	box-shadow:         0px 0px 10px 10px black;
+}
 
 #modal_background {
 	background-color: rgba(0, 0, 0, 0.92);
