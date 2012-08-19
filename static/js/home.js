@@ -20,6 +20,7 @@ $(document).ready(function() {
         $('#id_expiration_label').html(dateText);
       }
     });
+    $('#id_expiration_label').remove();
     $('#id_expiration').after("<p id='id_expiration_label'>(Optional) Select an Expiration Date</p>");
     $('#id_location').after($('#request_map'));
   });
@@ -68,16 +69,16 @@ $(document).ready(function() {
     $.ajax({
       url: '/image/request/' + $(this).data('request-id') + "/",
       success: function(data){
-        var html = "<h2>" + data[0].fields.location + "</h2>";
-        html += "<div class='offers'>"
+        //var html = "<h2>" + data[0].fields.location + "</h2>";
+        var html = "<div class='offers'>"
       html += "</div>"
       $('.location-details').html(html);
     $.ajax({
       url: '/image/request/' + data[0].pk + '/offers/',
       success: function(data){
-        var html = "<h3>All Offers</h3>";
+        var html = "";
         for(i in data){
-          html += "<div class='preview-popup' style='max-width: 250px;'><img src='http://dash-media.s3.amazonaws.com" + data[i].fields.image + "' /></div>"   
+          html += "<div class='preview-popup'><center><img src='http://dash-media.s3.amazonaws.com" + data[i].fields.image + "' /></center></div>"   
         }
         $(".location-details .offers").html(html);
       }

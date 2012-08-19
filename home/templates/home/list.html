@@ -1,26 +1,35 @@
 {% extends "list.html" %}
 {% block content %}
 
-<!-- Example row of columns -->
-
 {% if user.is_authenticated %}
+<div class="row">
+  <div class="span4 offset1">
+    <br />
+    <h2>Your Requests</h2>
+  </div>
+</div>
+
 <div id="your-requests">
-    <h3>Your Requests</h3>
     {% for request in user.image_requests.all %}
-    <div class="row">
-        <div class="span3">
-            <a href="#" class="location-review" data-request-id="{{ request.id }}">{{ request.location }}</a>
-        </div> 
-        <div class="span6 offset2">
-            {% for offer in request.offers.all %}
-            <img src="{{ MEDIA_URL }}{{ offer.image }}" class="offerthumbnail" />
-            {% empty %}
-            Sorry there are currently no offers.
-            {% endfor %}
+    <img class="divider" src="/static/img/divider.png" />
+    <div class="row request_layout">
+      <div class="span8 offset2">
+        <p class="req_user">{{ request.user.get_full_name }}</p>
+        <p class="req_expiration" data-expiration="{{ request.expiration }}">Expires: {{ request.expiration }}</p>
+        <p class="req_description">{{ request.description }}</p>
+        <div class="submissions_frame">
+          Submissions:
+          <br />
+          {% for offer in request.offers.all %}
+          <img src="{{ MEDIA_URL }}{{ offer.image }}" class="offerthumbnail" />
+          {% empty %}
+          {% endfor %}
+          <br />
+          <a href="#" class="location-review" data-request-id="{{ request.id }}">View Pictures</a>
         </div>
+      </div>
     </div>
-    {% empty %}
-    You have no image requests
+
     {% endfor %}
 </div>
 {% endif %}
@@ -33,6 +42,25 @@
     </div>
 </div>
 {% for request in requests %}
+{% if user.is_authenticated %}
+{% if user.username == request.user.username %}
+{% else %}
+<img class="divider" src="/static/img/divider.png" />
+<div class="row request_layout">
+    <div class="span8 offset2">
+        <div class="map_frame">
+          <div class="list_map" data-lat="{{ request.latitude }}" data-lng="{{ request.longitude }}"></div>
+          <p class="req_location">{{ request.location }}</p>
+        </div>
+        <p class="req_user">{{ request.user.get_full_name }}</p>
+        <p class="req_expiration" data-expiration="{{ request.expiration }}">Expires: {{ request.expiration }}</p>
+        <p class="req_description">{{ request.description }}</p>
+        <a class="make_offer" data-request-id="{{ request.id }}">Submit Photo</a>
+        
+    </div>
+  </div>
+{% endif %}
+{% else %}
 <img class="divider" src="/static/img/divider.png" />
 <div class="row request_layout">
     <div class="span8 offset2">
@@ -47,6 +75,8 @@
         
     </div>
 </div>
+
+{% endif %}
 {% empty %}
 <div class="row">
     <div class="span4 offset2">
@@ -62,7 +92,7 @@
     <div id="request_map">
             <div id="map_toggle">pin to a map</div>
             <div id="map_canvas"></div>
-        </div>
+    </div>
     <form action="{% url requestimage %}" method="post">
         {% csrf_token %}
         {{ requestform.as_p }}
@@ -77,8 +107,6 @@
         <input type="submit" value="Submit Photo" id="submit_offer_button" />
     </form> 
 </div>
-<div class="location-details">
-   hello 
-</div>
+<div class="location-details"></div>
 
 {% endblock %}
