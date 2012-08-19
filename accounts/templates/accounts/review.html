@@ -1,0 +1,20 @@
+{% extends "list.html" %}
+
+{% block content %}
+{% for request in requests %}
+<div class="row">
+    <div class="span3">
+        {{ request.location }}
+    </div> 
+    <div class="span6 offset2">
+        {% for offer in request.offers.all %}
+        <img src="{{ MEDIA_URL }}{{ offer.image }}" class="offerthumbnail" />
+        {% empty %}
+        Sorry there are currently no offers.
+        {% endfor %}
+    </div>
+</div>
+{% empty %}
+You don't have any requests, at all.
+{% endfor %}
+{% endblock %}
