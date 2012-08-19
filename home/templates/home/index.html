@@ -46,11 +46,11 @@
       </div>
       <div id="modal_background"></div>
       <div id="request_form">
+        <div id="map_canvas" style="width:200px;height:200px;"></div>
         <form action="{% url requestimage %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Make Request" />
         </form>
       </div>
-
 {% endblock %}

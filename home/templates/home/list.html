@@ -33,6 +33,7 @@
 
 <div id="modal_background"></div>
 <div id="request_form">
+  <div id="map_canvas" style="width:200px;height:200px;"></div>
     <form action="{% url requestimage %}" method="post">
         {% csrf_token %}
         {{ requestform.as_p }}
@@ -43,7 +44,7 @@
     <form action="{% url offerimage %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ offerform.as_p }}
-        <input type="submit" value="Make Offer" />
+        <input type="submit" value="Submit Photo" />
     </form> 
 </div>
 
