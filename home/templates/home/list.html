@@ -2,8 +2,32 @@
 {% block content %}
 
 <!-- Example row of columns -->
+
+{% if user.is_authenticated %}
+<div id="your-requests">
+    <h3>Your Requests</h3>
+    {% for request in user.image_requests.all %}
+    <div class="row">
+        <div class="span3">
+            <a href="#" class="location-review" data-request-id="{{ request.id }}">{{ request.location }}</a>
+        </div> 
+        <div class="span6 offset2">
+            {% for offer in request.offers.all %}
+            <img src="{{ MEDIA_URL }}{{ offer.image }}" class="offerthumbnail" />
+            {% empty %}
+            Sorry there are currently no offers.
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+    You have no image requests
+    {% endfor %}
+</div>
+{% endif %}
+
+
 <div class="row">
-    <div class="span4 offset2">
+    <div class="span4 offset1">
         <br />
         <h2>Needed Pictures</h2>
     </div>
@@ -33,7 +57,7 @@
 
 <div id="modal_background"></div>
 <div id="request_form">
-  <div id="map_canvas" style="width:200px;height:200px;"></div>
+    <div id="map_canvas" style="width:200px;height:200px;"></div>
     <form action="{% url requestimage %}" method="post">
         {% csrf_token %}
         {{ requestform.as_p }}
@@ -47,6 +71,9 @@
         <input type="hidden" name="request" id="request" />
         <input type="submit" value="Submit Photo" id="submit_offer_button" />
     </form> 
+</div>
+<div class="location-details">
+   hello 
 </div>
 
 {% endblock %}

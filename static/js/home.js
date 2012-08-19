@@ -33,6 +33,7 @@ $(document).ready(function() {
     $(this).fadeToggle();
     $('#request_form:visible').toggle();
     $('#offer_form:visible').toggle();
+    $('.location-details:visible').toggle();
   });
   $('#id_expiration').click(function(){
     $('.id_expiration_trigger').click();
@@ -60,6 +61,32 @@ $(document).ready(function() {
     $('#id_latitude').val(default_lat);
     $('#id_longitude').val(default_lng);
   });
+  $('.location-review').click(function(){
+    $('.location-details').center();
+    $('#modal_background').fadeToggle();
+    $('.location-details').fadeToggle();
+    $.ajax({
+        url: '/image/request/' + $(this).data('request-id') + "/",
+        success: function(data){
+            var html = "<h2>" + data[0].fields.location + "</h2>";
+            html += "<div class='offers'>"
+            html += "</div>"
+            $('.location-details').html(html);
+            $.ajax({
+                url: '/image/request/' + data[0].pk + '/offers/',
+                success: function(data){
+                    var html = "<h3>All Offers</h3>";
+                    for(i in data){
+                        html += "<div class='preview-popup' style='max-width: 250px;'><img src='http://dash-media.s3.amazonaws.com" + data[i].fields.image + "' /></div>"   
+                    }
+                    $(".location-details .offers").html(html);
+                }
+            });
+        }
+    });
+    
+  });
+    
 });
 
 
