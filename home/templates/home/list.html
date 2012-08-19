@@ -21,7 +21,7 @@
           Submissions:
           <br />
           {% for offer in request.offers.all %}
-          <a href="{{ MEDIA_URL }}{{ offer.image }}" class="preview"><img src="{{ MEDIA_URL }}{{ offer.image }}" alt="gallery thumbnail" class="offerthumbnail" />
+          <a href="{{ MEDIA_URL }}{{ offer.image }}" class="preview"><img src="{{ MEDIA_URL }}{{ offer.image }}" alt="gallery thumbnail" class="offerthumbnail" /></a>
           {% empty %}
           {% endfor %}
         </div>
