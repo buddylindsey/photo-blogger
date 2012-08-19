@@ -11,7 +11,7 @@ var default_lng = -96.00540148632808;
 $(document).ready(function() {
   $('.show_request').click(function(){
     $('#request_form').center();
-    $('#modal_background').fadeToggle();
+    $('#modal_background').toggle();
     $('#request_form').show();
     $('#id_expiration').datepicker({showOn: "button",
       buttonImage: "/static/img/calendar.png",
@@ -41,22 +41,22 @@ $(document).ready(function() {
   $('#submit_request_button').click(function(){
 
     if($('#id_description').val().length == 0)
-    {
-      alert('please enter a description');
-      $('#id_description').focus();
-    }
+  {
+    alert('please enter a description');
+    $('#id_description').focus();
+  }
     else
-    {
-      if($('#id_location').val().length == 0)
-      {
-        $('#id_location').val("Not location specific");  
-      }
-      $('#submit_request').submit();
-    }
+  {
+    if($('#id_location').val().length == 0)
+  {
+    $('#id_location').val("Not location specific");  
+  }
+  $('#submit_request').submit();
+  }
   });
   $('#map_toggle').click(function(){
     $('#map_canvas').toggle();
-    initializeMap(default_lat,default_lng);
+    initializeMap($("#map_canvas"),default_lat,default_lng);
     $('#map_toggle').remove();
     $('#id_latitude').val(default_lat);
     $('#id_longitude').val(default_lng);
@@ -66,39 +66,55 @@ $(document).ready(function() {
     $('#modal_background').fadeToggle();
     $('.location-details').fadeToggle();
     $.ajax({
-        url: '/image/request/' + $(this).data('request-id') + "/",
-        success: function(data){
-            var html = "<h2>" + data[0].fields.location + "</h2>";
-            html += "<div class='offers'>"
-            html += "</div>"
-            $('.location-details').html(html);
-            $.ajax({
-                url: '/image/request/' + data[0].pk + '/offers/',
-                success: function(data){
-                    var html = "<h3>All Offers</h3>";
-                    for(i in data){
-                        html += "<div class='preview-popup' style='max-width: 250px;'><img src='http://dash-media.s3.amazonaws.com" + data[i].fields.image + "' /></div>"   
-                    }
-                    $(".location-details .offers").html(html);
-                }
-            });
+      url: '/image/request/' + $(this).data('request-id') + "/",
+      success: function(data){
+        var html = "<h2>" + data[0].fields.location + "</h2>";
+        html += "<div class='offers'>"
+      html += "</div>"
+      $('.location-details').html(html);
+    $.ajax({
+      url: '/image/request/' + data[0].pk + '/offers/',
+      success: function(data){
+        var html = "<h3>All Offers</h3>";
+        for(i in data){
+          html += "<div class='preview-popup' style='max-width: 250px;'><img src='http://dash-media.s3.amazonaws.com" + data[i].fields.image + "' /></div>"   
         }
+        $(".location-details .offers").html(html);
+      }
     });
-    
+      }
+    });
+
   });
-    
+  $('.list_map').each(function(){
+    if($(this).data("lat") != "0" && $(this).data("lng") != "0" &&
+      $(this).data("lat") != "None" && $(this).data("lng") != "None")
+    {
+      initializeMap($(this),$(this).data("lat"),$(this).data("lng"));
+    }
+    else {
+      $(this).remove();
+    }
+  });
+  $('.req_expiration').each(function(){
+    if($(this).data("expiration") == "None")
+  {
+    $(this).remove();
+  }
+  });
+
 });
 
 
 
-function initializeMap(lat,lng) {
+function initializeMap(mapidname,lat,lng) {
   var myLatlng = new google.maps.LatLng(lat,lng);
   var myOptions = {
     zoom: 4,
     center: myLatlng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
-  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  var map = new google.maps.Map(mapidname[0], myOptions);
 
   var marker = new google.maps.Marker({
     position: myLatlng, 
@@ -112,5 +128,5 @@ function initializeMap(lat,lng) {
         $('#id_latitude').val(marker.position.lat());
         $('#id_longitude').val(marker.position.lng());
       }
-  );
+      );
 }

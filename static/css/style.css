@@ -309,3 +309,53 @@ input:-ms-input-placeholder {
     max-width: 100px;
     max-height: 100px;
 }
+
+.row.request_layout {
+	min-height: 270px;
+}
+.row.request_layout p.req_user {
+	font-size: 25px;
+	width: 230px;
+	line-height: 1em;
+	display: inline;
+	font-weight: 400;
+}
+
+.row.request_layout p.req_expiration {
+	display: inline;
+	margin-left: 10px;
+	color: #858585;
+}
+
+.row.request_layout p.req_description {
+	background-color: #f7f7f7;
+	width: 546px;
+	font-size: 19px;
+	font-weight: 300;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid rgb(191, 191, 191);
+	margin-top: 11px;
+	padding: 10px 30px 10px 10px;
+}
+
+.list_map {
+	width: 200px;
+	height: 200px;
+	border: 2px dashed rgb(171, 169, 169);
+	margin-bottom: 10px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+.map_frame {
+	width: 200px;
+	position: relative;
+	top: 8px;
+	float: right;
+	text-align: left;
+	font-weight: 300;
+	font-size: 19px;
+}
+.map_frame p {
+	margin-left: 33px;
+}

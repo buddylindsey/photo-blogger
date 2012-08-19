@@ -34,15 +34,17 @@
 </div>
 {% for request in requests %}
 <img class="divider" src="/static/img/divider.png" />
-<div class="row">
-    <div class="span4 offset2">
-        <p class="req_user">{{ request.user }}</p>
-        <p class="req_location">{{ request.location }}</p>
+<div class="row request_layout">
+    <div class="span8 offset2">
+        <div class="map_frame">
+          <div class="list_map" data-lat="{{ request.latitude }}" data-lng="{{ request.longitude }}"></div>
+          <p class="req_location">{{ request.location }}</p>
+        </div>
+        <p class="req_user">{{ request.user.get_full_name }}</p>
+        <p class="req_expiration" data-expiration="{{ request.expiration }}">Expires: {{ request.expiration }}</p>
         <p class="req_description">{{ request.description }}</p>
-        <p class="req_expiration">{{ request.expiration }}</p>
-        <p class="req_latitude">{{ request.latitude }}</p>
-        <p class="req_longitude">{{ request.longitude }}</p>
         <a class="make_offer" data-request-id="{{ request.id }}">Make Offer</a>
+        
     </div>
 </div>
 {% empty %}
@@ -57,7 +59,10 @@
 
 <div id="modal_background"></div>
 <div id="request_form">
-    <div id="map_canvas" style="width:200px;height:200px;"></div>
+    <div id="request_map">
+            <div id="map_toggle">pin to a map</div>
+            <div id="map_canvas"></div>
+        </div>
     <form action="{% url requestimage %}" method="post">
         {% csrf_token %}
         {{ requestform.as_p }}
