@@ -75,30 +75,31 @@ p.step {
 	line-height: 2em;
 }
 
-.facebooklogin.login {
-	display: block;
+.facebooklogin {
+	margin-top: 30px;
+	margin-left: 100px;
+}
+
+.facebooklogin div {
+	text-align: center;
+	float: left;
+}
+
+.facebooklogin .request_image {
+	width: 203px;
+}
+
+.facebooklogin img.login_image {
 	margin-top: 90px;
-	margin-left: 110px;
-}
-
-.facebooklogin.request {
 	display: block;
-	margin-top: 90px;
-	margin-left: 110px;
 }
 
-img.facebooklogin.request {
-	width: 145px;
-}
-
-p.facebooklogin {
-	margin-left: 155px;
+.facebooklogin p a {
 	margin-top: 9px;
-}
-
-p.facebooklogin a {
+	display: block;
 	color: #d7562d;
 	font-size: 16px;
+	text-align: center;
 }
 
 .quotation2 {

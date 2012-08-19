@@ -39,12 +39,16 @@
     <div id="headerslideshow">
          <div id="background">
             <img src="{{STATIC_URL}}img/logo.png" id="logo" />
+            <div class="facebooklogin">
             {% if user.is_authenticated %}
-            <img src="{{STATIC_URL}}img/requestphotobutton.png" class="facebooklogin request" />
-            <p class="facebooklogin"><a href="/accounts/logout">Logout</a></p>
+            <div>
+              <img src="{{STATIC_URL}}img/requestphotobutton.png" class="request_image" />
+              <p><a href="/accounts/logout">Logout - {{user.get_full_name}}</a></p>
+            </div>  
             {% else %}
-            <a href="/accounts/login/"><img src="{{STATIC_URL}}img/facebooklogin.png" class="facebooklogin login" /></a>
+            <a href="/accounts/login/"><img src="{{STATIC_URL}}img/facebooklogin.png" class="login_image" /></a>
             {% endif %}
+            </div>
          </div>
      </div>    
     {% block content %}
