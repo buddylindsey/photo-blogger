@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div id="map">
+</div>
+
+
 <form action="{% url requestimage %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
