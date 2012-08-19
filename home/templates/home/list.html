@@ -1,56 +1,50 @@
 {% extends "list.html" %}
 {% block content %}
-      <div class="quotation1">
-        <h2>Great for Bloggers</h2>
-        <p>We have all been there, you have a deadline quickly approaching and you need a picture of Madison Square Garden.</p>
-      </div>
-      <div class="quotation2">
-        <h2>Convenient for Photographers</h2>
-        <p>Or maybe you happen to be near Madison Square Garden and you have your camera in your bag, why not grab a shot.</p>
-      </div>
-      <img class="divider" src="/static/img/divider.png" />
-      <div id="steps">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4 offset2">
-          <h2>How it works!</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span4 offset2">
-          <h2 class="step">1</h2>
-           <p class="step">Bill needs a picture for his blog, he describes the shot on the request form.</p>
-        </div>
-        <div class="span4">
-          <h2 class="step">2</h2>
-           <p class="step">Photographers from all over the world view his request and if its convenient, grab the shot Bill needs.</p>
-       </div>
-      </div>
-      <div class="row">
-        <div class="span4 offset2">
-          <h2 class="step">3</h2>
-           <p class="step">The photographer submits the photo to CrowdPhoto.org for Bill's approval.</p>
-        </div>
-        <div class="span4">
-          <h2 class="step">4</h2>
-           <p class="step">Bill is alerted that his photo is available.  He approves the photo and high-fives the photographer.</p>
-       </div>
-     </div>
-     <div class="row">
-        <div class="span6 offset3">
-          <center>
-          <img src="{{STATIC_URL}}img/viewlistbutton.png" class="inputbutton" />
-          <img src="{{STATIC_URL}}img/requestphotobutton.png" class="inputbutton" />
-          </center>
-        </div>
-      </div>
-      <div id="modal_background"></div>
-      <div id="request_form">
-        <form action="{% url requestimage %}" method="post">
+
+<!-- Example row of columns -->
+<div class="row">
+    <div class="span4 offset2">
+        <br />
+        <h2>Needed Pictures</h2>
+    </div>
+</div>
+{% for request in requests %}
+<img class="divider" src="/static/img/divider.png" />
+<div class="row">
+    <div class="span4 offset2">
+        <p class="req_user">{{ request.user }}</p>
+        <p class="req_location">{{ request.location }}</p>
+        <p class="req_description">{{ request.description }}</p>
+        <p class="req_expiration">{{ request.expiration }}</p>
+        <p class="req_latitude">{{ request.latitude }}</p>
+        <p class="req_longitude">{{ request.longitude }}</p>
+        <a class="make_offer">Make Offer</a>
+    </div>
+</div>
+{% empty %}
+<div class="row">
+    <div class="span4 offset2">
+        <h2 class="step"></h2>
+        <p class="step">Supply is greater than demand! No one needs a picture at the moment.</p>
+    </div>
+</div>
+
+{% endfor %}
+
+<div id="modal_background"></div>
+<div id="request_form">
+    <form action="{% url requestimage %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ requestform.as_p }}
         <input type="submit" value="Make Request" />
-        </form>
-      </div>
+    </form>
+</div>
+<div id="offer_form">
+    <form action="{% url offerimage %}" method="post">
+        {% csrf_token %}
+        {{ offerform.as_p }}
+        <input type="submit" value="Make Offer" />
+    </form>
+</div>
 
 {% endblock %}
