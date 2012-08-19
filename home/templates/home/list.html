@@ -44,7 +44,7 @@
     <form action="{% url offerimage %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ offerform.as_p }}
-        <inpyt type="hidden" name="request" />
+        <input type="hidden" name="request" />
         <input type="submit" value="Submit Photo" />
     </form> 
 </div>
