@@ -42,7 +42,7 @@
             <div class="facebooklogin">
             {% if user.is_authenticated %}
             <div>
-              <img src="{{STATIC_URL}}img/requestphotobutton.png" class="request_image" />
+              <a class="show_request" href="#"><img src="{{STATIC_URL}}img/requestphotobutton.png" class="request_image" /></a>
               <p><a href="/accounts/logout">Logout - {{user.get_full_name}}</a></p>
             </div>  
             {% else %}
@@ -69,5 +69,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}js/home.js"></script>
   </body>
 </html>

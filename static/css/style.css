@@ -145,3 +145,34 @@ p.step {
 	margin-left: 10px;
 }
 
+div#request_form {
+	width: 370px;
+	background-color: #f0f034;
+	position: fixed;
+	left: 70px;
+	top: 0;
+	padding: 10px;
+}
+
+#create_modal {
+	background-color: rgba(127, 127, 127, 0.71);
+	top:0px; /* start from top */  
+	left:0px;
+	width: 1000px;
+	height: 1000px;
+	position: absolute;
+	display: none;
+	z-index: 9999;
+}
+
+#mask{  
+    position:absolute; /* important */  
+     /* start from left */  
+    height:100%; /* cover the whole page */  
+    width:100%;  /* cover the whole page */  
+    display:none; /* don't show it '*/  
+  
+    /* styling bellow */  
+    background-color: black;  
+} 
+
