@@ -451,3 +451,6 @@ input:-ms-input-placeholder {
 	letter-spacing: 0;
 	color: #da582e;
 }
+h2#requested_by_others_title {
+	text-align: center;
+}
