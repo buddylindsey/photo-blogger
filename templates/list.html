@@ -41,7 +41,7 @@
         <a href="/"><img border=0 src="{{STATIC_URL}}img/logo-light.png" id="logo" /></a>
         <div class="facebooklogin">
           {% if user.is_authenticated %}
-          <p><a href="{% url logout %}?next={% url list %}">Logout - {{user.get_full_name}}</a></p>
+          <p><a href="{% url logout %}?next={% url list %}">Logout - {{user.get_full_name}}</a> <img id="facebook_profile_pic" src="https://graph.facebook.com/{{ user.username }}/picture" /></p>
           <a class="show_request"><img src="{{STATIC_URL}}img/requestphotobutton.png" class="request_image" /></a>
 
           {% else %}

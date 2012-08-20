@@ -73,6 +73,7 @@ p.step {
 	margin-bottom: 40px;
 }
 
+
 .quotation1 {
 	margin-left: 201px;
 	letter-spacing: 1px;
@@ -104,16 +105,18 @@ p.step {
 }
 
 #headerslideshow .facebooklogin p a {
-	margin-top: 9px;
-	display: block;
 	color: #d7562d;
 	font-size: 16px;
 	text-align: center;
 }
 
+#headerslideshow .facebooklogin p {
+	margin-top: 20px;
+}
+
 #header_light .facebooklogin {
 	float: right;
-	width: 430px;
+	width: 500px;
 	text-align: right;
 	margin-top: 31px;
 	margin-right: 20px;
@@ -410,7 +413,7 @@ input:-ms-input-placeholder {
 	padding: 10px;
 }
 #your-requests .row.request_layout {
-	min-height: 190px;
+	min-height: 145px;
 }
 
 #preview{
@@ -421,3 +424,30 @@ input:-ms-input-placeholder {
 	display:none;
 	color:#fff;
 	}
+	
+#facebook_profile_pic {
+	display: inline;
+	margin-right: 3px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+#header_light .facebooklogin #facebook_profile_pic {
+	margin: 10px -11px 0 40px;
+	padding: 0;
+	display: inline;
+	float: right;
+	width: 43px;
+}
+#your-requests {
+	display: none;
+	margin-bottom: 80px;
+}
+#your_request_toggle {
+	cursor: pointer;
+	cursor: hand;
+	font-size: 16px;
+	text-decoration: underline;
+	letter-spacing: 0;
+	color: #da582e;
+}

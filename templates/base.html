@@ -45,7 +45,7 @@
             <div>
                 <a href="{% url list %}"><img src="{{STATIC_URL}}img/viewlistbutton.png" class="request_image" /></a>
                 <a class="show_request"><img src="{{STATIC_URL}}img/requestphotobutton.png" class="request_image" /></a>
-              <p><a href="{% url logout %}?next={% url index %}">Logout - {{user.get_full_name}}</a></p>
+                <p><img id="facebook_profile_pic" src="https://graph.facebook.com/{{ user.username }}/picture" /> <a href="{% url logout %}?next={% url index %}">Logout - {{user.get_full_name}}</a></p>
             </div>  
             {% else %}
             <a href="{% url socialauth_begin 'facebook' %}?next={% url index %}"><img src="{{STATIC_URL}}img/facebooklogin.png" class="login_image" /></a>

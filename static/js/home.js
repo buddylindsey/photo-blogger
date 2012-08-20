@@ -36,6 +36,18 @@ $(document).ready(function() {
     $('#offer_form:visible').toggle();
     $('.location-details:visible').toggle();
   });
+  $('#your_request_toggle').click(function(){
+    if($(this).text() == "View your requests")
+  {
+    $(this).text("Hide your requests");
+  }
+  else 
+  {
+    $(this).text("View your requests");
+  }
+    $('#your-requests').fadeToggle();
+  });
+
   $('#id_expiration').click(function(){
     $('.id_expiration_trigger').click();
   });
